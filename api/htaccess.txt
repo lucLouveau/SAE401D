@@ -1,0 +1,31 @@
+Allow from all
+Satisfy any
+
+Options FollowSymLinks
+
+RewriteEngine On
+
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteRule ^([a-zA-Z]+)?$ index.php?action=$1&%1
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteRule ^([a-zA-Z]+)/([0-9]+)?$ index.php?action=$1&id=$2&%1
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteCond %{REQUEST_METHOD} ^GET 
+RewriteRule ^([a-zA-Z]+)/([0-9]+)/([a-zA-Z]+)?$ index.php?action=$1&id=$2&reche=$3&%1
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteRule ^(employees|Employees)/email/(.+)?$ index.php?action=$1&email=$2&%1
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteRule ^(employees|Employees)/store/([0-9]+)?$ index.php?action=$1&store=$2&%1
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteRule ^(Stocks|stocks)/store/(.+)?$ index.php?action=$1&store=$2&%1
+
+RewriteCond %{QUERY_STRING} (.*)
+RewriteCond %{REQUEST_METHOD} ^GET 
+RewriteRule ^(products|Products)/name/(.+)?$ index.php?action=$1&name=$2&%1 [B]
+
