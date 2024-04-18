@@ -1,0 +1,1964 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Bikestore-API",
+    "description": "The documentation for Bikestore API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://dev-louveau222.users.info.unicaen.fr/bikestores",
+      "description": "Bikestore API"
+    }
+  ],
+  "paths": {
+    "/Brands": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "returns all registered brands",
+        "operationId": "getBrands",
+        "responses": {
+          "200": {
+            "description": "All the brands",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/brand"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "create new brand",
+        "operationId": "setBrand",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to employees",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the name of the futur brand",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "create brand",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/brand"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Brands/{id}": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "Brand with id for id",
+        "operationId": "getBrandById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the brand",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Brand n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/brand"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "modify brand",
+        "operationId": "modifyBrand",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to modify brands",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the brand",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the new name of the brand",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "modify brand",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/brand"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "delete brand",
+        "operationId": "deleteBrand",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to delete brands",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the brand",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete brand",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Brands/{id}/product": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "description": "All products from brand 1",
+        "operationId": "getAllProductsFromBrand",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the brand",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All products from brand n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Categories": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "description": "returns all registered category",
+        "operationId": "getCategory",
+        "responses": {
+          "200": {
+            "description": "All the category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "description": "create new category",
+        "operationId": "setCategory",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to category",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the name of the futur category",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "create category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Categories/{id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "description": "Category with id for id",
+        "operationId": "getCategoryById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the category",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Category"
+        ],
+        "description": "modify category",
+        "operationId": "modifyCategory",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to modify bcategory",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the category",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the new name of the category",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "modify category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Category"
+        ],
+        "description": "delete category",
+        "operationId": "deleteCategory",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to delete category",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the category",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Categories/{id}/product": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "description": "All products from category 1",
+        "operationId": "getAllProductsFromCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the category",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All products from category n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "description": "returns all registered products",
+        "operationId": "getProducts",
+        "responses": {
+          "200": {
+            "description": "All the products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "description": "create new product",
+        "operationId": "setProduct",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to modify product",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the new name of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brand",
+            "in": "header",
+            "description": "the new brand of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "category",
+            "in": "header",
+            "description": "the new category of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "year",
+            "in": "header",
+            "description": "the new year of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "price",
+            "in": "header",
+            "description": "the new price of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "create product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "description": "Product with id for id",
+        "operationId": "getProductById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/product"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "description": "modify product",
+        "operationId": "modifyProducts",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to modify product",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the new name of the product",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brand",
+            "in": "header",
+            "description": "the new brand of the product",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "category",
+            "in": "header",
+            "description": "the new category of the product",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "year",
+            "in": "header",
+            "description": "the new year of the product",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "price",
+            "in": "header",
+            "description": "the new price of the product",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "modify product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/product"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "description": "delete product",
+        "operationId": "deleteProduct",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to delete product",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products/{id}/stocks": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "description": "All stocks from Product n°{id}",
+        "operationId": "getAllStocksFromProduct",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the product",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All stocks from product n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/stock"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stocks": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "description": "returns all registered stocks",
+        "operationId": "getStocks",
+        "responses": {
+          "200": {
+            "description": "All the stocks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/stock"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Stocks"
+        ],
+        "description": "create new stock",
+        "operationId": "setStock",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to modify stock",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "store",
+            "in": "header",
+            "description": "the store of the stock",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "product",
+            "in": "header",
+            "description": "the product of the stock",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "header",
+            "description": "the quantity of the stock",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "create stock",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/stock"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stocks/{id}": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "description": "return the stocks n°{id}",
+        "operationId": "getStocksFromId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the stock",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Stocks n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/stock"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Stocks"
+        ],
+        "description": "modify stock",
+        "operationId": "modifyStock",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to modify stock",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the stock",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "store",
+            "in": "header",
+            "description": "the new store of the stock",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "product",
+            "in": "header",
+            "description": "the new product of the stock",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "header",
+            "description": "the new quantity of the stock",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "modify category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/stock"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Stocks"
+        ],
+        "description": "delete stock",
+        "operationId": "deleteStock",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to delete stock",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the stock",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete stock",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stocks/store/{id}": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "description": "return all stocks from store n°{id}",
+        "operationId": "getAllStockFromStore",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the store",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All stocks from store n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/stock"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stores": {
+      "get": {
+        "tags": [
+          "Stores"
+        ],
+        "description": "returns all registered stores",
+        "operationId": "getStores",
+        "responses": {
+          "200": {
+            "description": "All the stores",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/store"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Stores"
+        ],
+        "description": "create new store",
+        "operationId": "setStore",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to store",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the name of the futur store",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phone",
+            "in": "header",
+            "description": "the phone of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "description": "the email of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "street",
+            "in": "header",
+            "description": "the street of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "header",
+            "description": "the city of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "header",
+            "description": "the state of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "header",
+            "description": "the code of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "create store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/store"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stores/{id}": {
+      "get": {
+        "tags": [
+          "Stores"
+        ],
+        "description": "return the store n°{id}",
+        "operationId": "getStoreFromId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the store",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Store n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/store"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Stores"
+        ],
+        "description": "modify store",
+        "operationId": "modifyStore",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to modify store",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the store",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the name of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phone",
+            "in": "header",
+            "description": "the phone of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "description": "the email of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "street",
+            "in": "header",
+            "description": "the street of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "header",
+            "description": "the city of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "header",
+            "description": "the state of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "header",
+            "description": "the code of the futur store",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "modify category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/store"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Stores"
+        ],
+        "description": "delete store",
+        "operationId": "deleteStore",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to delete store",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the store",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete store",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Stores/{id}/stocks": {
+      "get": {
+        "tags": [
+          "Stores"
+        ],
+        "description": "return all stocks from store n°{id}",
+        "operationId": "getAllStockFromStores",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the store",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All stocks from store n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/stock"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Employees": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "returns all registered employees",
+        "operationId": "getEmployees",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to employees",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All employees",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/employee"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "create new employee",
+        "operationId": "setEmployee",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to employee",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the name of the futur employee",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "description": "the email of the futur employee",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "header",
+            "description": "the password of the futur employee",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "header",
+            "description": "the role of the futur employee",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "store",
+            "in": "header",
+            "description": "the store of the futur employee",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "create category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/employee"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Employees/{id}": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "return the employee n°{id}",
+        "operationId": "getEmployeesFromId",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to employees",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the employee",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "employee n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/employee"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "modify employee",
+        "operationId": "modifyEmployee",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to modify employee",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the employee",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "the name of the futur employee",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "header",
+            "description": "the email of the futur employee",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "header",
+            "description": "the password of the futur employee",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "header",
+            "description": "the role of the futur employee",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "store",
+            "in": "header",
+            "description": "the store of the futur employee",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "modify employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/employee"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "delete employee",
+        "operationId": "deleteEmployee",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to delete employee",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the employee",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Employees/store/{id}": {
+      "get": {
+        "tags": [
+          "Employees"
+        ],
+        "description": "return all employees from the store n°{id}",
+        "operationId": "getEmployeesFromStore",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "the apiKey is required to access to employees",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the id of the store",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all employees from the store n°{id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/employee"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "brand": {
+        "type": "object",
+        "properties": {
+          "brand_id": {
+            "type": "integer"
+          },
+          "brand_name": {
+            "type": "string"
+          }
+        }
+      },
+      "message": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "status_message": {
+            "type": "string"
+          }
+        }
+      },
+      "category": {
+        "type": "object",
+        "properties": {
+          "category_id": {
+            "type": "integer"
+          },
+          "category_name": {
+            "type": "string"
+          }
+        }
+      },
+      "product": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "integer"
+          },
+          "product_name": {
+            "type": "string"
+          },
+          "brand": {
+            "$ref": "#/components/schemas/brand"
+          },
+          "category": {
+            "$ref": "#/components/schemas/category"
+          },
+          "model_year": {
+            "type": "integer"
+          },
+          "list_price": {
+            "type": "number"
+          }
+        }
+      },
+      "storeStock": {
+        "type": "object",
+        "properties": {
+          "store_id": {
+            "type": "integer"
+          },
+          "store_name": {
+            "type": "string"
+          }
+        }
+      },
+      "productStock": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "integer"
+          },
+          "product_name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "stock": {
+        "type": "object",
+        "properties": {
+          "stock_id": {
+            "type": "integer"
+          },
+          "store": {
+            "$ref": "#/components/schemas/storeStock"
+          },
+          "product": {
+            "$ref": "#/components/schemas/productStock"
+          },
+          "quantity": {
+            "type": "string"
+          }
+        }
+      },
+      "store": {
+        "type": "object",
+        "properties": {
+          "store_id": {
+            "type": "integer"
+          },
+          "store_name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "zip_code": {
+            "type": "integer"
+          }
+        }
+      },
+      "employee": {
+        "type": "object",
+        "properties": {
+          "employee_id": {
+            "type": "integer"
+          },
+          "store": {
+            "$ref": "#/components/schemas/storeStock"
+          },
+          "employee_email": {
+            "type": "string"
+          },
+          "employee_password": {
+            "type": "string"
+          },
+          "employee_role": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

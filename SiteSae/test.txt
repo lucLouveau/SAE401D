@@ -1,0 +1,50 @@
+johndoe@bikestore.com
+KQ,wDqd9iGtt
+
+josephquitz@bikestore.com
+mFLjH6fPaU^E
+
+shannahsummer@bikestore.com
+TVv(cB4mBEiC
+
+e8f1997c763
+
+employer peut ajouter et modifier un produit, un stock, mais ne peut supprimer que les stock de son magasin
+
+unchief peut ajouter et modifier un produit, un stock, un employer, il peut aussi modifier les informations de son stores, il peut aussi supprimer un employee, un stock et c'est tout
+
+Un it peut tout faire.
+
+
+
+//brand
+https://dev-louveau222.users.info.unicaen.fr/bikestores/brands  all brands
+https://dev-louveau222.users.info.unicaen.fr/bikestores/brands/1 brand with 1 for id
+https://dev-louveau222.users.info.unicaen.fr/bikestores/brands/1/product all products from brand 1
+
+//category
+https://dev-louveau222.users.info.unicaen.fr/bikestores/categories all categories
+https://dev-louveau222.users.info.unicaen.fr/bikestores/categories/1 category with 1 for id
+https://dev-louveau222.users.info.unicaen.fr/bikestores/categories/1/product all products from category 1
+
+//product
+https://dev-louveau222.users.info.unicaen.fr/bikestores/product all products
+https://dev-louveau222.users.info.unicaen.fr/bikestores/product/1 product with 1 for id
+https://dev-louveau222.users.info.unicaen.fr/bikestores/product/1/stocks all stocks for this product
+https://dev-louveau222.users.info.unicaen.fr/bikestores/products/name/{name} products by name
+
+//stock
+https://dev-louveau222.users.info.unicaen.fr/bikestores/stocks all stocks
+https://dev-louveau222.users.info.unicaen.fr/bikestores/stocks/1 stock with 1 for id
+https://dev-louveau222.users.info.unicaen.fr/bikestores/stocks/store/1 all stocks for store number 1
+
+//store
+https://dev-louveau222.users.info.unicaen.fr/bikestores/stores all stores
+https://dev-louveau222.users.info.unicaen.fr/bikestores/stores/1 store with 1 for id
+https://dev-louveau222.users.info.unicaen.fr/bikestores/stores/1/stocks all stock from this store
+https://dev-louveau222.users.info.unicaen.fr/bikestores/stores/1/stocks/name/{name} stocks product name {name}
+
+//employee with api_key
+https://dev-louveau222.users.info.unicaen.fr/bikestores/employees?apiKey=api_key all employees !!only with a api_key!!
+https://dev-louveau222.users.info.unicaen.fr/bikestores/employees/1?apiKey=api_key employee with 1 for id !!only with a api_key!!
+https://dev-louveau222.users.info.unicaen.fr/bikestores/employees/store/1?apiKey=api_key employee from the store 1 !!only with a api_key!!
